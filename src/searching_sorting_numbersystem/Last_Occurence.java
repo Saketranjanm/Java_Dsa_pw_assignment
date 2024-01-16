@@ -49,3 +49,12 @@ public class Last_Occurence {
 
 }
 	}
+//
+//output:
+//	Enter the size of array: 
+//		12
+//		Enter the elements of array: 
+//		1 1 1 2 3 4 4 5 6 6 6 6
+//		Enter the element to find its last occcurence in array: 
+//		4
+//		last occured at index: 6
