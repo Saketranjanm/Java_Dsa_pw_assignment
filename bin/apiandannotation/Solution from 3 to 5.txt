@@ -1,0 +1,90 @@
+Q3.what is difference between collection and streams? Explain with example.
+
+Collections and streams are both concepts in Java that deal with handling and processing data, but they serve different purposes and have distinct characteristics.
+Collections:
+Collections in Java refer to classes and interfaces that represent data structures to store and manipulate groups of objects.
+They are typically concrete classes like ArrayList, LinkedList, HashSet, etc., which store data in memory.
+Collections allow us to add, remove, and access elements in a structured way, and they provide various methods to manipulate the data they contain.
+Ex:
+List<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+for (Integer number : numbers) {
+    if (number % 2 == 0) {
+        System.out.println(number);
+    }
+}
+Streams:
+Streams in Java are a sequence of elements that support aggregate operations on them, such as filtering, mapping, reducing, etc.
+They don't store data themselves; instead, they provide a way to process data from a source in a functional style.
+Streams are lazily evaluated, meaning that the processing of elements is deferred until a terminal operation is invoked on the stream.
+Streams allow for more concise and expressive code, especially when dealing with large datasets or when performing complex operations on data.
+Ex:
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+numbers.stream()
+       .filter(num -> num % 2 == 0)
+       .forEach(System.out::println);
+In this example, we use a stream to process the elements of the list. We first create a stream from the list, then apply a filter operation to keep only the even numbers, and finally, we use forEach to print each element.
+
+Q4.what is enums in java? explain with example
+
+In Java, an enum (short for enumeration) is a special datatype that allows us to define a set of named constants. Enums provide a way to represent a fixed set of predefined values, making our code more readable, maintainable, and type-safe.
+ex:public enum DayOfWeek {
+    SUNDAY,
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY
+}
+We define an enum called DayOfWeek, which represents the days of the week.
+Inside the enum body, we list the constants (values) representing each day of the week: SUNDAY, MONDAY, TUESDAY, etc.
+Each constant is implicitly public, static, and final, meaning they cannot be changed or reassigned after initialization.
+
+Enums can have additional properties and methods associated with them.
+ex:
+public enum DayOfWeek {
+    SUNDAY("Sun"),
+    MONDAY("Mon"),
+    TUESDAY("Tue"),
+    WEDNESDAY("Wed"),
+    THURSDAY("Thu"),
+    FRIDAY("Fri"),
+    SATURDAY("Sat");
+
+    private final String abbreviation;
+
+    DayOfWeek(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+}
+
+Q5.What are inbuilt annotations in java?
+
+In Java, there are several built-in annotations provided by the language and its standard libraries. 
+These annotations serve various purposes and can be categorized into several groups based on their usage.
+Some of the most commonly used built-in annotations in Java include:
+
+@Override: This annotation is used to indicate that a method overrides a method in its superclass. It helps catch errors at compile-time if the annotated method does not actually override a method in the superclass.
+
+@Deprecated: This annotation indicates that the annotated element (such as a class, method, field, etc.) is deprecated and should no longer be used. It serves as a warning to developers to avoid using the deprecated element.
+
+@SuppressWarnings: This annotation is used to suppress specific compiler warnings. It allows developers to ignore certain warnings that may not be relevant or necessary in their code.
+
+@FunctionalInterface: Introduced in Java 8, this annotation is used to indicate that an interface is a functional interface, meaning it has exactly one abstract method (though it can have multiple default or static methods). 
+Functional interfaces are commonly used in conjunction with lambda expressions and the Java Stream API.
+
+@SafeVarargs: This annotation is used to suppress unchecked warnings that may occur when using varargs (variable arity) parameters in methods with generic types.
+ It indicates that the annotated method is safe to use with varargs and won't produce heap pollution.
+
+@SuppressWarnings("unchecked"): This is a specific usage of the @SuppressWarnings annotation to suppress unchecked warnings that may occur when using raw types or performing unchecked casts.
+
+@NonNull / @Nullable: While not part of the standard Java library, these annotations are commonly used in various frameworks and libraries to indicate whether a parameter, field, or return value can be null or not. They help improve code readability and prevent NullPointerExceptions.
