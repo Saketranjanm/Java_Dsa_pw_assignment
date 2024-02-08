@@ -1,0 +1,144 @@
+Q1.What is input and output stream in java?
+
+In Java, input and output streams are the primary means of performing input and output operations, respectively.
+They provide a uniform and consistent way to read from and write to various sources and destinations, such as files, network connections, and in-memory buffers.
+Input Stream:
+An input stream is a sequence of data bytes that can be read from a data source.
+Input streams are used to read data from various sources, such as files, network sockets, and standard input (e.g., keyboard).
+The InputStream class is the abstract superclass for all input stream classes in Java. It provides methods for reading bytes of data from the input source.
+
+Output Stream:
+An output stream is a sequence of data bytes that can be written to a data destination.
+Output streams are used to write data to various destinations, such as files, network sockets, and standard output (e.g., console).
+The OutputStream class is the abstract superclass for all output stream classes in Java. It provides methods for writing bytes of data to the output destination.
+
+Q2.What are the methods of outputstream?
+
+In Java, the OutputStream class is an abstract class representing an output stream of bytes. It serves as the superclass for all classes representing output streams.
+some of the common methods defined in the OutputStream class and commonly used in its subclasses:
+write(int b): Writes the specified byte to the output stream. The byte is represented by the lowest eight bits of the integer argument.
+write(byte[] b): Writes an array of bytes to the output stream. Writes b.length bytes from the specified byte array to the output stream.
+write(byte[] b, int off, int len): Writes len bytes from the specified byte array starting at offset off to the output stream.
+flush(): Flushes the output stream, forcing any buffered output bytes to be written out.
+close(): Closes the output stream and releases any system resources associated with it. Once closed, further write operations may result in an IOException.
+
+Q3.What is serialization in java?
+
+
+Serialization in Java refers to the process of converting an object into a stream of bytes, which can be easily stored in a file, sent over a network, or saved in a database.
+The reverse process of converting a stream of bytes back into an object is called deserialization.
+Serialization is primarily used for data persistence and communication between Java applications running on different platforms.
+
+Q4.What is the serializable interface in java?
+
+The Serializable interface in Java is a marker interface that indicates that a class's instances can be serialized.
+It doesn't contain any methods or fields; its sole purpose is to provide metadata to the Java Virtual Machine (JVM) that objects of the class can be converted into a stream of bytes and vice versa.
+When a class implements the Serializable interface, it signals to the JVM that its instances can be serialized using Java's built-in serialization mechanism.
+This mechanism converts an object's state (its instance variables) into a stream of bytes, which can then be stored in a file, transmitted over a network, or saved in a database.
+The reverse process, deserialization, reconstructs an object from the stream of bytes.
+
+Q5.What is deserialization in java?
+
+Deserialization in Java refers to the process of reconstructing an object from its serialized form, which is a stream of bytes. 
+When an object is serialized, its state (its instance variables) is converted into a series of bytes that can be easily stored in a file, sent over a network, or saved in a database.
+Deserialization reverses this process, converting the stream of bytes back into an object with the same state as the original object.
+
+Q6.How is serialization achieved in java?
+
+erialization in Java is achieved using the built-in serialization mechanism provided by the Java platform. 
+This mechanism allows objects to be converted into a stream of bytes, which can then be easily stored in a file, sent over a network, or saved in a database. 
+The reverse process, deserialization, converts the stream of bytes back into an object.
+
+import java.io.*;
+public class SerializationExample {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass(1, "John");
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("object.ser"));
+            out.writeObject(obj);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+Q7.How is deserialization achieved in java?
+
+Deserialization in Java is achieved by converting a stream of bytes back into an object's state, reconstructing the object from its serialized form. 
+It is the reverse process of serialization, where an object is converted into bytes. 
+Java provides built-in classes and methods to perform deserialization efficiently.
+
+import java.io.*;
+public class DeserializationExample {
+    public static void main(String[] args) {
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("object.ser"));
+            MyClass obj = (MyClass) in.readObject();
+            in.close();
+            System.out.println("Deserialized Object: " + obj.getId() + ", " + obj.getName());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+Q8.How can you avoid certain member variables of class from getting serialized?
+
+
+in Java, you can prevent certain member variables of a class from being serialized by marking them as transient. 
+When a member variable is marked as transient, it tells the Java serialization mechanism to exclude that variable from the serialization process.
+
+import java.io.Serializable;
+public class MyClass implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private int id;
+    private transient String transientData;
+}
+In this example, the transientData member variable is marked as transient. 
+When instances of MyClass are serialized, the transientData variable will not be included in the serialized form of the object.
+
+Q9.What classes are available in the java IO File classes API?
+
+
+The Java I/O (Input/Output) package provides a variety of classes and interfaces to perform input and output operations in Java. 
+Within the I/O package, the java.io.File class and its related classes are commonly used for file and directory operations.
+
+File:
+java.io.File: Represents a file or directory pathname. It provides methods for creating, deleting, renaming, and querying files and directories.
+
+Input/Output Streams:
+java.io.FileInputStream: Reads bytes from a file.
+java.io.FileOutputStream: Writes bytes to a file.
+java.io.FileReader: Reads characters from a file.
+java.io.FileWriter: Writes characters to a file.
+
+Buffered Streams:
+java.io.BufferedReader: Reads text from a character-input stream with efficiency (buffered).
+java.io.BufferedWriter: Writes text to a character-output stream with efficiency (buffered).
+
+Character Streams:
+java.io.InputStreamReader: Reads bytes and decodes them into characters using a specified charset.
+java.io.OutputStreamWriter: Writes characters to an output stream, converting them into bytes using a specified charset.
+
+Other File-related Classes:
+java.io.FileDescriptor: Represents the file descriptor for the standard input, output, and error streams.
+java.io.FilePermission: Represents the permission for a file or directory.
+java.io.FileFilter: Interface for filtering files based on various criteria.
+java.io.FilenameFilter: Interface for filtering filenames based on various criteria.
+
+Q10.What is Differences between Externalizable and Serialization interface.
+
+Serializable:
+Serializable is a marker interface i.e. does not contain any method.
+Serializable interface passes the responsibility of serialization to JVM and its default algorithm.
+Mostly, default serialization is easy to implement, but has a higher performance cost.
+It’s hard to analyze and modify class structure because any change may break the serialization.
+Default serialization does not call any class constructor.
+
+Externalizable:
+Externalizable interface includes two methods writeExternal() and readExternal() which implementing classes MUST override.
+Externalizable provides control of serialization logic to the programmer – to write custom logic.
+Serialization done using Externalizable, add more responsibility to the programmer but often results in better performance.
+It’s easier to analyze and modify class structure because of complete control over serialization logic.
+A public no-arg constructor is required while using Externalizable interface.

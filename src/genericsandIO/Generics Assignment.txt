@@ -1,0 +1,74 @@
+Q1.What are generics in java?
+
+Generics in Java are a way to make classes and methods more flexible and reusable by allowing them to operate on objects of specified types. 
+They provide a mechanism to parameterize types, allowing you to create classes, interfaces, and methods that can work with any data type.
+
+Q2.What are the benefits of using Generics in java?
+
+Generics provide the following benefits:
+Type Safety: Generics enable you to specify the types of objects that a class or method can work with, providing compile-time type checking.
+This helps prevent type-related errors at runtime.
+Code Reusability: Generics allow you to write classes and methods that can work with different types without code duplication.
+This promotes code reusability and eliminates the need to write separate implementations for each type.
+Compile-Time Checks: Generics enable the compiler to perform compile-time type checks, ensuring that the code is type-safe and reducing the likelihood of runtime errors.
+Elimination of Type Casting: Generics eliminate the need for explicit type casting in many cases, making the code cleaner and more readable.
+
+Q3.What is a Generic Class in java?
+
+A generic class in Java is a class that is parameterized by one or more type parameters.
+It allows you to create classes that can work with any data type, providing flexibility, type safety, and code reusability.
+public class Pair<K, V> {
+    private K key;
+    private V value;
+
+    // Constructor, methods, etc.
+}
+
+Q4.What is a Type Parameter in Java Generics?
+
+
+A type parameter in Java generics is a placeholder for a data type that is used to create generic classes, interfaces, and methods.
+It allows you to define classes and methods that can work with any data type, providing flexibility, type safety, and code reusability.
+In Java generics, type parameters are specified within angle brackets (< >) when defining a generic class, interface, or method. 
+They represent the types of objects that the generic construct will operate on.
+public class Box<T> {
+    private T value;
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+}
+
+Q5.What is a Generic Method in java?
+
+A generic method in Java is a method that is parameterized by one or more type parameters.
+It allows you to create methods that can work with any data type, providing flexibility, type safety, and code reusability.
+Parameterized by Type Parameters: Like generic classes, generic methods are parameterized by type parameters, which are specified within angle brackets (< >) before the return type of the method.
+Works with Any Data Type: A generic method can work with any data type specified by its type parameters. It allows you to write methods that can operate on objects of different types without code duplication.
+Provides Type Safety: Generics enable the compiler to perform compile-time type checks, ensuring that the code is type-safe and reducing the likelihood of runtime errors.
+Eliminates Type Casting: Generic methods eliminate the need for explicit type casting in many cases, making the code cleaner and more readable.
+Flexibility and Reusability: Generic methods provide flexibility and code reusability by allowing you to create methods that can work with different types without writing separate implementations for each type.
+public <T> void printArray(T[] array) {
+    for (T element : array) {
+        System.out.println(element);
+    }
+}
+
+Q6.What is the difference between ArrayList and ArrayList<T>?
+
+The difference between ArrayList and ArrayList<T> lies in their usage of generics:
+
+ArrayList:
+ArrayList is a raw type, meaning it does not specify a specific type parameter. 
+In older versions of Java, before the introduction of generics in Java 5, collections like ArrayList could store objects of any type.
+When you use ArrayList without specifying a type parameter, it can store objects of any type, but you lose type safety because the compiler cannot perform type checks at compile time.
+
+ArrayList<T>:
+ArrayList<T> is a parameterized type using generics. The <T> syntax indicates that ArrayList is a generic class parameterized by a type parameter T.
+When you use ArrayList<T>, you specify the type of objects that the ArrayList can store.
+For example, ArrayList<String> indicates that the ArrayList can only store String objects.
+Generics provide type safety by enabling the compiler to perform compile-time type checks, ensuring that only objects of the specified type are added to the ArrayList, and reducing the likelihood of runtime errors.
